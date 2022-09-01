@@ -1,9 +1,23 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
+  const router = useRouter();
+
+  function goToDetailPage() {
+    router.push({
+      pathname: '/posts/[postId]',
+      query: {
+        postId: 123,
+        ref: 'social'
+      }
+    })
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -21,6 +35,10 @@ const Home: NextPage = () => {
           Get started by editing{' '}
           <code className={styles.code}>pages/index.tsx</code>
         </p>
+
+        <button onClick={() => goToDetailPage()}>
+          Go to Post detail page
+        </button>
 
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
@@ -51,6 +69,11 @@ const Home: NextPage = () => {
             </p>
           </a>
         </div>
+        <div style={{ marginTop: '2000px' }}></div>
+        <Link href='/about'>
+          <a>Go to About page</a>
+        </Link>
+        <iframe width='1000' height='1962' src='https://prod-apnortheast-a.online.tableau.com/t/sonngogl021299/views/Ope_Cost/Dash_Vng?:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link' />
       </main>
 
       <footer className={styles.footer}>
@@ -59,10 +82,10 @@ const Home: NextPage = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
-          <span className={styles.logo}>
+          Powered by Aiden Vu
+          {/* <span className={styles.logo}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
+          </span> */}
         </a>
       </footer>
     </div>
